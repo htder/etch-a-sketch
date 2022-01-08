@@ -5,6 +5,12 @@ const gridContainer = document.createElement("div");
 const resetButton = document.querySelector(".reset");
 const sizeButton = document.querySelector(".changeSize");
 const flexContainer = document.querySelector(".flex-container");
+const slider = document.querySelector(".slider");
+const sliderDisplayValue = document.querySelector(".demo");
+
+const sizeContainer = document.querySelector(".sizeContainer");
+sliderDisplayValue.innerHTML = `${slider.value} x ${slider.value}`;
+const sliderValue = slider.value;
 
 gridContainer.classList.add("grid-container");
 
@@ -14,18 +20,18 @@ resetButton.addEventListener("click", function (e) {
   clearCellsDelay();
 });
 
-sizeButton.addEventListener("click", function (e) {
-  let input = document.getElementById("input").value;
-  if (input < 10 || input > 100) {
-    document.getElementById("input").value = "Enter Valid Number";
-    return;
-  }
-  initialGridSize = input;
+sizeContainer.addEventListener("mouseup", function (e) {
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.lastChild);
   }
-  createGrid(input);
-  document.getElementById("input").value = "";
+  createGrid(slider.value);
+});
+
+sizeContainer.addEventListener("input", function (e) {
+  sliderDisplayValue.innerHTML = `${slider.value} x ${slider.value}`;
+  while (gridContainer.firstChild) {
+    gridContainer.removeChild(gridContainer.lastChild);
+  }
 });
 
 function createGrid(gridSize) {

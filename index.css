@@ -15,10 +15,16 @@
   column-gap: 0;
 }
 
+.demo {
+  text-align: center;
+}
+
 h1 {
   margin: 10px;
   text-align: center;
   font-size: 38px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid black;
 }
 
 .colorCell0 {
@@ -90,5 +96,3 @@ h1 {
     transform: translate3d(8px, 0, 0);
   }
 }
-
-/* box-shadow: 5px 5px 10px 5px #0ff, -5px -5px 10px 5px #0ff; */
