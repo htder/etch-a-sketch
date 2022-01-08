@@ -34,6 +34,7 @@ function createGrid(gridSize) {
     const gridItem = document.createElement("div");
     gridItem.style.width = dimension;
     gridItem.style.height = dimension;
+    gridItem.classList.add("colorCell0");
 
     gridContainer.appendChild(gridItem);
   }
@@ -48,7 +49,10 @@ function cellsListener() {
   const gridCells = document.querySelectorAll(".grid-container div");
   gridCells.forEach((cell) =>
     cell.addEventListener("mouseenter", function (e) {
-      cell.classList.add("colorCell");
+      const number = +/\d+/.exec(cell.classList[0])[0];
+      if (number == 10) return;
+      cell.classList.remove(`colorCell${number}`);
+      cell.classList.add(`colorCell${number + 2}`);
     })
   );
 }
@@ -63,7 +67,7 @@ function clearCellsDelay() {
   gridContainer.classList.add("shakeContainer");
   async function slowLoop() {
     gridCells.forEach((cell) => {
-      cell.classList.remove("colorCell");
+      cell.className = "colorCell0";
     });
 
     await wait(350);
