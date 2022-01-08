@@ -34,3 +34,31 @@ h1 {
 .sizeContainer {
   padding-right: 55px;
 }
+
+.shakeContainer {
+  animation: shake;
+  animation-duration: 1s;
+  transform: translate3d(0, 0, 0);
+}
+@keyframes shake {
+  15%,
+  85% {
+    transform: translate3d(-2px, 0, 0);
+  }
+
+  25%,
+  75% {
+    transform: translate3d(4px, 0, 0);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-8px, 0, 0);
+  }
+  40%,
+  60% {
+    transform: translate3d(8px, 0, 0);
+  }
+}
+
+/* box-shadow: 5px 5px 10px 5px #0ff, -5px -5px 10px 5px #0ff; */

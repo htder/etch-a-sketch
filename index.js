@@ -1,4 +1,4 @@
-const initialGridSize = 16;
+let initialGridSize = 16;
 
 const gridContainer = document.createElement("div");
 
@@ -11,36 +11,35 @@ gridContainer.classList.add("grid-container");
 createGrid(initialGridSize);
 
 resetButton.addEventListener("click", function (e) {
-  clearCells();
+  clearCellsDelay();
 });
 
 sizeButton.addEventListener("click", function (e) {
   let input = document.getElementById("input").value;
-  //   if (input < 10 || input > 100) return;
-  gridSize = input;
+  if (input < 10 || input > 100) {
+    document.getElementById("input").value = "Enter Valid Number";
+    return;
+  }
+  initialGridSize = input;
   while (gridContainer.firstChild) {
     gridContainer.removeChild(gridContainer.lastChild);
   }
   createGrid(input);
+  document.getElementById("input").value = "";
 });
 
-function clearCells() {
-  const gridCells = document.querySelectorAll(".grid-container div");
-  gridCells.forEach((cell) => cell.classList.remove("colorCell"));
-}
-
 function createGrid(gridSize) {
+  const dimension = `${960 / gridSize}px`;
   for (let i = 0; i < gridSize * gridSize; i++) {
     const gridItem = document.createElement("div");
-    gridItem.textContent = "";
-    gridItem.style.width = `${1200 / gridSize}px`;
-    gridItem.style.height = `${1200 / gridSize}px`;
+    gridItem.style.width = dimension;
+    gridItem.style.height = dimension;
 
     gridContainer.appendChild(gridItem);
   }
+  gridContainer.style.gridTemplateRows = `repeat(${gridSize}, ${dimension})`;
+  gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, ${dimension})`;
   flexContainer.append(gridContainer);
-  gridContainer.style.gridTemplateRows = `repeat(${gridSize}, 1fr)`;
-  gridContainer.style.gridTemplateColumns = `repeat(${gridSize}, 1fr)`;
 
   cellsListener();
 }
@@ -52,4 +51,23 @@ function cellsListener() {
       cell.classList.add("colorCell");
     })
   );
+}
+
+const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
+function clearCellsDelay() {
+  const gridCells = Array.from(
+    document.querySelectorAll(".grid-container div")
+  );
+
+  gridContainer.classList.add("shakeContainer");
+  async function slowLoop() {
+    gridCells.forEach((cell) => {
+      cell.classList.remove("colorCell");
+    });
+
+    await wait(350);
+    gridContainer.classList.remove("shakeContainer");
+  }
+  slowLoop();
 }
