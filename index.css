@@ -1,0 +1,36 @@
+.flex-container {
+  display: flex;
+  margin: 25px;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-container {
+  display: grid;
+  border: 12px solid blue;
+  border-radius: 10px;
+  width: 960px;
+  height: 960px;
+  row-gap: 0;
+  column-gap: 0;
+}
+
+h1 {
+  margin: 10px;
+  text-align: center;
+  font-size: 38px;
+}
+
+.colorCell {
+  background-color: black;
+}
+
+.instructions {
+  display: flex;
+  justify-content: center;
+  margin-top: 25px;
+}
+
+.sizeContainer {
+  padding-right: 55px;
+}
