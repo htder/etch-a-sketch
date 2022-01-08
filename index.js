@@ -3,14 +3,12 @@ let initialGridSize = 16;
 const gridContainer = document.createElement("div");
 
 const resetButton = document.querySelector(".reset");
-const sizeButton = document.querySelector(".changeSize");
 const flexContainer = document.querySelector(".flex-container");
 const slider = document.querySelector(".slider");
 const sliderDisplayValue = document.querySelector(".demo");
 
 const sizeContainer = document.querySelector(".sizeContainer");
 sliderDisplayValue.innerHTML = `${slider.value} x ${slider.value}`;
-const sliderValue = slider.value;
 
 gridContainer.classList.add("grid-container");
 
@@ -76,7 +74,7 @@ function clearCellsDelay() {
       cell.className = "colorCell0";
     });
 
-    await wait(350);
+    await wait(500);
     gridContainer.classList.remove("shakeContainer");
   }
   slowLoop();
